@@ -25,4 +25,3 @@ int main()
         printf("%d", a[i]);
     }
 }
-void niu(){}
