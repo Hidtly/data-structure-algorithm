@@ -1,0 +1,16 @@
+抽象数据类型（ADT）定义
+
+ADT Circle{
+    数据对象 : D = {r, x, y| r, x, y均为实数}
+    数据关系 : R = {< r,x,y > | r是半径， <x, y>是圆心坐标} 
+    基本操作 :
+    Circle(&C, r,x,y)
+        操作结果 : 构造一个圆。
+    double Area(C)
+        初始条件 : 圆已存在。
+        操作结果 : 计算面积。
+    double Circumference(C)
+        初始条件 : 圆已存在。
+        操作结果 : 计算周长。
+    
+}ADT Circle
