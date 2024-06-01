@@ -1,18 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <define.h>
 
-//#define ElemType int
 #define LIST_INIT_SIZE 100
-#define CONDITION      1
-#define OK             1
-#define TRUE           1
-#define FALSE          0
-#define ERROR          0
-#define INFEASIBLE    -1
-#define OVERFLOW      -2
-
-typedef int ElemType;
-typedef int Status;
 
 #if CONDITION
 // 数组动态分配
@@ -62,6 +52,7 @@ Status IsEmpty(SqList *L)
     else
         return FALSE;
 }
+
 // 取线性表L 第i个元素的内容
 Status GetElem(SqList *L, int i, ElemType *e)
 {
