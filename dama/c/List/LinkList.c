@@ -103,8 +103,8 @@ Lnode *LocateElem_L(LinkList L, ElemType e)
     while (p && (p->data != e))
         p = p->next;
     return p;
-}
-int LocateElem_X(LinkList L, ElemType e) 
+}   /* O(n) */
+    int LocateElem_X(LinkList L, ElemType e)
 {   //返回序号
     Lnode *p;
     int j = 1;
@@ -138,8 +138,11 @@ Status ListInsert_L(LinkList L, int i, ElemType e)
     s->next = p->next;
     p->next = s;
     return OK;
-}
-//将线性表L中第i个元素删除
+}  /* O(1) 
+    * 需要查找的话 O(n)
+    */
+
+// 将线性表L中第i个元素删除
 Status ListDelete_L(LinkList L, int i, ElemType *e) 
 {
     Lnode *p, *q;
@@ -156,4 +159,50 @@ Status ListDelete_L(LinkList L, int i, ElemType *e)
     *e = q->data;//保存删除结点的数据域
     free(q);//释放删除结点的空间
     return OK;
-}
+} /* O(1) 需要查找的话 O(n) */
+
+/**
+ * 单链接的建立（头插法）
+ * 逆位序
+ */
+void CreateList_H(LinkList L, int n)
+{
+    L = (LinkList)malloc(sizeof(Lnode));
+    L->next = NULL;                                  //建立一个带头结点的单链表
+    for (int i = n; i > 0; --i) {
+        Lnode  *p = (LinkList)malloc(sizeof(Lnode)); //生成新结点p
+        scanf(&p->data);
+        p->next = L->next;                           //插入到表头
+        L->next = p;
+    }
+}/* O(n) */
+
+/**
+ * 单链接的建立（尾插法）
+ * 正位序
+ */
+void CreateList_R(LinkList L, int n)
+{
+    L = (LinkList)malloc(sizeof(Lnode));
+    L->next = NULL;                                  // 建立一个带头结点的单链表
+    LinkList r;
+    r = L;                                           //尾指针r 指向头结点
+    for (int i; i < n; ++i) {
+        Lnode *p = (LinkList)malloc(sizeof(Lnode));
+        scanf(&p->data);
+        p->next = NULL;
+        r->next = p;                                 //插入到表尾
+        r = p;                                       //r指向新的尾指针
+    }
+} /* O(n) */
+
+//带尾指针循环链表的合并
+LinkList Connect(LinkList Ta, LinkList Tb) 
+{
+    Lnode *p = (Lnode *)malloc(sizeof(Lnode));
+    p = Ta->next;                                    //p存表头结点
+    Ta->next = Tb->next->next;                       //Tb表头链结Ta表尾
+    free(Tb->next);                                  //释放Tb的表头结点  
+    Tb->next = p;                                    //修改指针 Tb的表尾指向Ta的表头
+    return Tb;
+} /* O(1) */

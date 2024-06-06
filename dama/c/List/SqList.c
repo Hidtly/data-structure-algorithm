@@ -120,3 +120,26 @@ Status Delete(SqList *L, int i)
     L->length--;//表长减1
     return OK;
 }
+//有序表的合并
+void MergeList_Sq(SqList *La, SqList *Lb, SqList *Lc)
+{
+    ElemType *pa, *pb, *pc, *pa_last, *pb_last;
+    pa = La->elem;                       //指针pa初值指向表La的第一个元素
+    pb = Lb->elem;                       //指针pb初值指向表Lb的第一个元素
+    Lc->length = La->length + Lb->length;//新表长度为量表的长度之和
+    Lc->elem = (ElemType *)malloc(sizeof(ElemType) *Lc->length);//为合并后的新表分配一个数组空间
+    pc = Lc->elem;                       //指针pc指向新表的第一个元素
+    pa_last = La->elem + La->length - 1; //指针pa_last指向La表的最后一个元素
+    pb_last = Lb->elem + Lb->length - 1; //指针pb_last指向Lb表的最后一个元素
+    while (pa <= pa_last && pb < pa_last)//两个表都非空
+    {
+        if (*pa <= *pb)                  //依次摘取两表中值较小的结点
+            *(pc++) = *(pa++);
+        else
+            *(pc++) = *(pb++);
+    }
+    while (pa <= pa_last)
+        *(pc++) = *(pa++);              // Lb表已经到达了表尾，将La中的剩余元素加入Lc
+    while (pb <= pb_last)
+        *(pc++) = *(pb++);              // La表已经到达了表尾，将Lb中的剩余元素加入Lc
+}
