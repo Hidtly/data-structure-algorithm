@@ -1,6 +1,5 @@
 #include "stdio.h"
 
-
 #define MAX 10
 
 struct SList{
