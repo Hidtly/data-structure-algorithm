@@ -44,6 +44,8 @@ Status GetLength(SqList *L)
 {
     return (L->length);
 }
+
+
 // 判断线性表L是否为空
 Status IsEmpty(SqList *L)
 {

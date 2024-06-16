@@ -21,8 +21,15 @@ Status InitList_L(LinkList *L)
     (*L)->next = NULL;
     return OK;
 }
-
-/* 判断链表L是否空 */ 
+struct LNode *createNode(int x)
+{
+    struct Lnode *t;
+    t = (struct Lnode *)malloc(sizeof(struct Lnode));
+    t->next = NULL;
+    t->data = x;
+    return t;
+} // 创建结点函数
+/* 判断链表L是否空 */
 Status ListEmpty(LinkList L) 
 {
     if (L->next)
@@ -206,3 +213,25 @@ LinkList Connect(LinkList Ta, LinkList Tb)
     Tb->next = p;                                    //修改指针 Tb的表尾指向Ta的表头
     return Tb;
 } /* O(1) */
+
+// 有序表合并-链表实现
+void MergeList_L(LinkList La, LinkList Lb, LinkList Lc)
+{
+    Lnode *pa, *pb, *pc;
+    pa = La->next;
+    pb = Lb->next;
+    pc = Lc = La;                                   // 用La的头结点作为Lc的头结点
+    while ( pa && pb ) {                            // La Lb 不为空
+        if ( pa->data <= pb->data ){
+            pc->next = pa;
+            pc = pa;
+            pa = pa->next;
+        } else {
+            pc->next = pb;
+            pc = pb;
+            pb = pb->next;
+        }
+    }
+    pc->next = pa ? pa : pb;                        // 插入剩余的结点
+    free(Lb);                                       // 释放Lb的头结点
+}
