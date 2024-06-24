@@ -1,0 +1,37 @@
+队列的抽象数据类型（ADT）定义
+
+ADT Queue{
+    数据对象 : D = {ai| ai∈ElemSet，i = 1,2, ... ,n, n ≥ 0}
+    数据关系 : R1 = {< ai - 1, ai > | ai-1, ai∈D, i = 2, ... , n} 
+             约定a1端为队列头， an端为队列尾。
+    基本操作 :
+    InitQueue(&q)    初始化操作
+        操作结果:构造一个空队列q。
+    DestroyQueue(&q) 销毁队列操作
+        初始条件:队列q已存在。
+        操作结果:队列q被销毁。
+    QueueEmpty(q)    判断队列q是否为空
+        初始条件:队列q已存在。
+        操作结果:若队列q为空队列，返回True，否则返回False。
+    QueueLength(q)   求队列的长度
+        初始条件:队列q已存在。
+        操作结果:返回队列q的元素个数，即队列的长度。
+    GetHead(q, &e)    取队头元素
+        初始条件:队列q已存在且非空。
+        操作结果:用e返回队列q的队列头元素。
+    ClearQueue(&q) 队列置空操作
+        初始条件:队列q已存在。
+        操作结果:队列q被清空。
+    Push(&q, e)    入队列操作
+        初始条件:队列q已存在。
+        操作结果:插入元素e为新的队尾元素。
+        q->base[q->rear] = e;
+        q->rear = (q->rear + 1) % MAX_Q_SIZE;
+        队满：(rear + 1) % MAX_Q_SIZE == front;
+    Pop(&q, &e)     出队列操作
+        初始条件:队列q已存在且非空。
+        操作结果:删除q的队头元素，并且用e返回其值。
+        e = q->base[q->front] ;
+        q->front = (q->front + 1) % MAX_Q_SIZE;
+
+}ADT Queue
