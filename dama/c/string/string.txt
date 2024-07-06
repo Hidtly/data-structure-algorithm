@@ -1,0 +1,18 @@
+
+串的抽象数据类型（ADT）定义
+
+ADT String {
+    数据对象 : D = {ai| ai∈CharacterSet，i = 1,2, ... ,n, n ≥ 0}
+    数据关系 : R1 = {< ai - 1, ai > | ai-1, ai∈D, i = 2, ... , n} 
+
+
+    基本操作：
+    ① StrAssign(&T, chars) // 串赋值
+    ② StrCompare(S, T)     // 串比较
+    ③ StrLength(S)         // 求串长
+    ④ Connect(&T, S1, S2)  // 串连结
+    ⑤ SubString(&Sub, S, pos, len) // 求子串
+    ⑥ StrCopy(&T, S) // 串拷贝
+    ⑦ StrEmpty(S) // 串判空
+    ⑧ ClearString // 
+}
